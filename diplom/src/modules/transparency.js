@@ -8,9 +8,10 @@ const reg = new RegExp('\\d{1,2}');
 export const prepairTransparency = () => {
     console.log();
     [...transparencyMobile.children].forEach((item, index) => {
-        if (screen.width < 545) {
+        if (screen.width < 1091) {
             transparencyMobile.style.display = 'flex';
             transparencyMobile.style.flexWrap = 'nowrap';
+            transparencyMobile.style.overflow = 'hidden';
             item.style.flex = "0 0 100%";
         };
         item.classList.add(`${index+1}`);

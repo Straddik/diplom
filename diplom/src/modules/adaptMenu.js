@@ -45,7 +45,7 @@ const adaptMenu = () => {
                 menu.style.transform = 'translate3d(645px,0,0)';
             }
         };
-        if (screen.width < 545) {
+        if (screen.width < 1091) {
             transparencyMobile.style.display = 'flex';
             transparencyMobile.style.flexWrap = 'nowrap';
             [...transparencyMobile.children].forEach((item, index) => {
