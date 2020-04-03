@@ -30,7 +30,7 @@ export const portfolioLoad = () => {
 
 export const movePortfolioLeft = () => {
     moveLeft(portfolio);
-    if (portfolio.firstElementChild.classList.contains('1') && (window.innerWidth > 383)) {
+    if (portfolio.firstElementChild.classList.contains('1') && (window.innerWidth > 575)) {
         arrowLeft.style.display = 'none';
     };
     arrowRight.style.display = 'flex';
@@ -38,11 +38,11 @@ export const movePortfolioLeft = () => {
 
 export const movePortfolioRight = () => {
     moveRight(portfolio);
-    if (portfolio.firstElementChild.classList.contains('3') && (screen.width > 684)) {
+    if (portfolio.firstElementChild.classList.contains('3') && (screen.width > 1024)) {
         arrowRight.style.display = 'none';
-    } else if (portfolio.firstElementChild.classList.contains('4') && (screen.width > 600)) {
+    } else if (portfolio.firstElementChild.classList.contains('4') && (screen.width > 900)) {
         arrowRight.style.display = 'none';
-    } else if (portfolio.firstElementChild.classList.contains('5') && (screen.width > 383)) {
+    } else if (portfolio.firstElementChild.classList.contains('5') && (screen.width > 575)) {
         arrowRight.style.display = 'none';
     };
     arrowLeft.style.display = 'flex';

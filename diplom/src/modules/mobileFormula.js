@@ -4,6 +4,7 @@ const mobile = document.querySelector('.formula-slider');
 export const mobileFormula = () => {
     mobile.style.display = 'flex';
     mobile.style.justifyContent = 'flex-start';
+    mobile.style.overflow = 'hidden';
 
     [...mobile.children].forEach((item, index) => {
         item.style.flex = '0 0 33%';

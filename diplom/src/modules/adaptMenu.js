@@ -1,13 +1,16 @@
 import { arrowRight, arrowLeft, arrowMobileLeft, arrowMobileRight } from "./portfolio";
 
 const appearanceRightArrow = () => {
-    if (!portfolio.firstElementChild.classList.contains('3') && !portfolio.firstElementChild.classList.contains('4') && !portfolio.firstElementChild.classList.contains('5') && (screen.width > 684)) {
+    if (!portfolio.firstElementChild.classList.contains('3') && !portfolio.firstElementChild.classList.contains('4') && !portfolio.firstElementChild.classList.contains('5') && (screen.width > 1024)) {
         arrowRight.style.display = 'flex';
-    } else if (!portfolio.firstElementChild.classList.contains('4') && !portfolio.firstElementChild.classList.contains('5') && (screen.width > 600)) {
+    } else if (!portfolio.firstElementChild.classList.contains('4') && !portfolio.firstElementChild.classList.contains('5') && (screen.width > 575)) {
         arrowRight.style.display = 'flex';
-    } else if (!portfolio.firstElementChild.classList.contains('5') && (screen.width > 383)) {
+    } else if (!portfolio.firstElementChild.classList.contains('5') && (screen.width > 575)) {
         arrowRight.style.display = 'flex';
-    };
+    } else if (screen.width < 576) {
+        arrowRight.style.display = 'none';
+        arrowLeft.style.display = 'none';
+    }
 };
 const portfolio = document.querySelector('.portfolio-slider');
 const portfolioMobile = document.querySelector('.portfolio-slider-mobile');
@@ -16,7 +19,7 @@ const adaptMenu = () => {
     window.addEventListener('resize', () => {
         const menu = document.querySelector('.popup-dialog-menu');
         //В блоке портфолио показ или исчезновение стрелок при адаптации
-        if (screen.width <= 383) {
+        if (screen.width <= 575) {
             arrowLeft.style.display = 'none';
             arrowRight.style.display = 'none';
             if (!portfolioMobile.firstElementChild.classList.contains('1')) {
