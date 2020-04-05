@@ -15,6 +15,7 @@ const appearanceRightArrow = () => {
 const portfolio = document.querySelector('.portfolio-slider');
 const portfolioMobile = document.querySelector('.portfolio-slider-mobile');
 const transparencyMobile = document.getElementById('transparency').children[0].children[3].children[0];
+const partners = document.querySelector('.partners-slider');
 const adaptMenu = () => {
     window.addEventListener('resize', () => {
         const menu = document.querySelector('.popup-dialog-menu');
@@ -41,7 +42,7 @@ const adaptMenu = () => {
         //Проверка изменения матрицы состояния(преобразование из строки в массив)
         if (window.getComputedStyle(menu).transform.split('matrix(')[1].split(', ').map(val => val = +val.split(')')[0])[4] !== 0 ||
             window.getComputedStyle(menu).transform.split('matrix(')[1].split(', ').map(val => val = +val.split(')')[0])[5] !== 0) {
-            if (window.innerWidth <= 576) {
+            if (window.innerWidth <= 575) {
                 menu.style.transform = 'translate3d(0,-120vh,0)';
                 menu.parentNode.style.width = '100%';
             } else {

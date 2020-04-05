@@ -19,6 +19,7 @@ import { moveReviewLeft, moveReviewRight, openPopupConsult, closePopupConsult } 
 import { switchScheme } from "./scheme";
 import { activeAccordion } from "./accordion";
 import { movePartnersLeft, movePartnersRight } from "./partners";
+import { changeCheckbox, activateRecall, closePopupThank } from "./sendForm";
 
 const clickEventListener = () => {
     const body = document.querySelector('body');
@@ -119,8 +120,14 @@ const clickEventListener = () => {
             movePartnersRight();
         } else if (target.closest('.button_wide')) {
             openPopupConsult();
+        } else if (target.closest('.checkbox__label')) {
+            changeCheckbox(target.closest('.checkbox__label'));
+        } else if (target.closest('button') && (target.closest('.feedback__form') || target.closest('.feedback-block__form'))) {
+            activateRecall(target);
         } else if (target.closest('.popup-consultation') && target.closest('.close')) {
             closePopupConsult();
+        } else if (target.closest('.popup-thank') && target.closest('.close')) {
+            closePopupThank();
         } else if (target.closest('.preview-block__item')) {
             changeDesignSlider(target.closest('.preview-block__item'));
         } else if (!target.closest('.popup-dialog-portfolio') && target.closest('.popup-portfolio')) {

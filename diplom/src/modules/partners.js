@@ -8,10 +8,13 @@ const reg = new RegExp('\\d');
 export const prepairPartners = () => {
     partners.style.display = "flex";
     partners.style.overflow = "hidden";
+    partners.style.flexWrap = 'nowrap';
     [...partners.children].forEach((item, index) => {
         item.style.flex = "0 0 33%";
+        item.style.maxWidth = '33%';
         item.classList.add(`${index+1}`);
-    })
+    });
+
 };
 
 export const movePartnersLeft = () => {

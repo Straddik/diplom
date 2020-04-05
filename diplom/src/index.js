@@ -19,6 +19,7 @@ import { prepairDesign } from "./modules/design";
 import { prepairCheme } from "./modules/scheme";
 import { prepairAccordion } from "./modules/accordion";
 import { prepairPartners } from "./modules/partners";
+import { prepairButtonSend } from "./modules/sendForm";
 
 clickEventListener();
 adaptMenu();
@@ -34,3 +35,4 @@ prepairDesign();
 prepairCheme();
 prepairAccordion();
 prepairPartners();
+prepairButtonSend();
