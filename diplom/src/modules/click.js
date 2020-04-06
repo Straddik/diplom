@@ -4,8 +4,7 @@ import listPhone from "./listPhone";
 import { popupMenu } from "./popupMenu";
 import { closePopupMenu } from "./popupMenu";
 import scrollIt from "./scrollIt";
-import { popupRepair } from "./popupRepair";
-import { closePopupRepair } from "./popupRepair";
+import { closePopupRepair, changeActive, moveNavRepairLeft, moveNavRepairRight, popupRepair } from "./popupRepair";
 import { popupPrivacy } from "./popupPrivacy";
 import { closePrivacy } from "./popupPrivacy";
 import { moveFormulaRight, moveFormulaLeft } from "./mobileFormula";
@@ -84,8 +83,12 @@ const clickEventListener = () => {
             moveProblemMobileRight(target.closest('#problems-arrow_right').parentNode);
         } else if (target.closest('#reviews-arrow_left')) {
             moveReviewLeft();
-        } else if (target.closest('#reviews-arrow_right')) {
-            moveReviewRight();
+        } else if (target.closest('#problems-arrow_right')) {
+            moveProblemMobileRight(target.closest('#problems-arrow_right').parentNode);
+        } else if (target.closest('#nav-arrow-popup-repair_left')) {
+            moveNavRepairLeft();
+        } else if (target.closest('#nav-arrow-popup-repair_right')) {
+            moveNavRepairRight();
         } else if (target.closest('.close') && target.closest('.popup-transparency')) {
             closeTransparency();
         } else if (target.closest('#portfolio-arrow-mobile_left')) {
@@ -120,6 +123,8 @@ const clickEventListener = () => {
             movePartnersRight();
         } else if (target.closest('.button_wide')) {
             openPopupConsult();
+        } else if (target.closest('.popup-repair-types-nav__item')) {
+            changeActive(target);
         } else if (target.closest('.checkbox__label')) {
             changeCheckbox(target.closest('.checkbox__label'));
         } else if (target.closest('button') && (target.closest('.feedback__form') || target.closest('.feedback-block__form'))) {

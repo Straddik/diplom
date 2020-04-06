@@ -15,9 +15,6 @@ const postData = (data, url) => {
 const applyStyle = () => {
     const style = document.createElement('style');
     style.textContent = `
-    input.success {
-        border: 2px solid green;
-    }
     input.error {
         border: 2px solid red;
     }
