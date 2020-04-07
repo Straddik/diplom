@@ -15,7 +15,6 @@ const appearanceRightArrow = () => {
 const portfolio = document.querySelector('.portfolio-slider');
 const portfolioMobile = document.querySelector('.portfolio-slider-mobile');
 const transparencyMobile = document.getElementById('transparency').children[0].children[3].children[0];
-const partners = document.querySelector('.partners-slider');
 const menu = document.querySelector('.popup-dialog-menu');
 const adaptMenu = () => {
     window.addEventListener('resize', () => {
