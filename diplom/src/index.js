@@ -1,4 +1,43 @@
 'use strict';
+//Полифил для innerHtml
+(function() {
+    // The innerHTML DOM property for Element.
+    if ('innerHTML' in Element.prototype) {
+        return;
+    }
+    Object.defineProperty(Element.prototype, 'innerHTML', {
+        get: function() {
+            var output = [];
+            var childNode = this.firstChild;
+            var serializer = new XMLSerializer();
+            while (childNode) {
+                output.push(serializer.serializeToString(childNode));
+                childNode = childNode.nextSibling;
+            }
+            return output.join('');
+        },
+        set: function(text) {
+            while (this.firstChild) {
+                this.removeChild(this.firstChild);
+            }
+            var parser = new DOMParser();
+            parser.async = false;
+            var xml = '<root>' + text + '</root>';
+            var element;
+            var childNode;
+            try {
+                element = parser.parseFromString(xml, 'text/xml').documentElement;
+                childNode = element.firstChild;
+                while (childNode) {
+                    this.appendChild(this.ownerDocument.importNode(childNode, true));
+                    childNode = childNode.nextSibling;
+                }
+            } catch (e) {
+                throw new Error('Error parsing XML string');
+            };
+        }
+    });
+})();
 
 import "@babel/polyfill";
 import elementClosest from 'element-closest';
@@ -8,7 +47,22 @@ import 'promise-polyfill';
 import 'whatwg-fetch';
 import 'formdata-polyfill';
 
-
+if (!window.getComputedStyle) {
+    /**
+     * @param {(Element|null)} e
+     * @param {(null|string)=} t
+     * @return {(CSSStyleDeclaration|null)}
+     */
+    window.getComputedStyle = function(e, t) {
+        return this.el = e, this.getPropertyValue = function(t) {
+            /** @type {RegExp} */
+            var n = /(\-([a-z]){1})/g;
+            return t == "float" && (t = "styleFloat"), n.test(t) && (t = t.replace(n, function() {
+                return arguments[2].toUpperCase();
+            })), e.currentStyle[t] ? e.currentStyle[t] : null;
+        }, this;
+    };
+}
 //полифил для remove
 if (!('remove' in Element.prototype)) {
     Element.prototype.remove = function() {

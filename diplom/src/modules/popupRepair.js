@@ -20,10 +20,12 @@ const createElements = (data) => {
             switchInner.innerHTML = button.innerHTML;
             item.priceList.forEach(i => {
                 let copy = mobileRaw.cloneNode(true);
-                copy.firstElementChild.innerHTML = i.typeService;
-                copy.children[3].innerHTML = i.units;
-                copy.children[4].innerHTML = i.cost;
-                table.firstElementChild.firstElementChild.appendChild(copy);
+                if (i.typeService && i.units && i.cost) {
+                    copy.firstElementChild.innerHTML = i.typeService;
+                    copy.children[3].innerHTML = i.units;
+                    copy.children[4].innerHTML = i.cost;
+                    table.firstElementChild.firstElementChild.appendChild(copy);
+                }
             })
         }
         buttons.appendChild(button);
@@ -33,8 +35,8 @@ const createElements = (data) => {
 
 export const prepairRepair = () => {
     buttons.innerHTML = '';
-    mobileRaw = table.firstElementChild.firstElementChild.firstElementChild;
-    desctopRaw = table.firstElementChild.firstElementChild.children[1];
+    mobileRaw = table.firstElementChild.firstElementChild.firstElementChild.cloneNode(true);
+    desctopRaw = table.firstElementChild.firstElementChild.children[1].cloneNode(true);
     [...table.children].forEach((item, index) => {
         if (index === 0) {
             item.firstElementChild.innerHTML = '';

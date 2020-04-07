@@ -83,6 +83,8 @@ const clickEventListener = () => {
             moveProblemMobileRight(target.closest('#problems-arrow_right').parentNode);
         } else if (target.closest('#reviews-arrow_left')) {
             moveReviewLeft();
+        } else if (target.closest('#reviews-arrow_right')) {
+            moveReviewRight();
         } else if (target.closest('#problems-arrow_right')) {
             moveProblemMobileRight(target.closest('#problems-arrow_right').parentNode);
         } else if (target.closest('#nav-arrow-popup-repair_left')) {

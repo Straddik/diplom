@@ -42,7 +42,7 @@ export const changeCheckbox = (elem) => {
     };
 };
 export const activateRecall = (elem) => {
-    if (!elem.getAttribute('disabled')) {
+    if (!elem.hasAttribute('disabled')) {
         const formData = new FormData(elem.closest('form'));
         let body = {};
         formData.forEach((val, key) => {
