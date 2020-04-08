@@ -133,7 +133,7 @@ const clickEventListener = () => {
             activateRecall(target);
         } else if (target.closest('.popup-consultation') && target.closest('.close') || target.closest('.popup-consultation') && !target.closest('.feedback-wrap')) {
             closePopupConsult();
-        } else if (target.closest('.popup-thank') && target.closest('.close')) {
+        } else if (target.closest('.popup-thank') && target.closest('.close') || target.closest('.popup-thank') && !target.closest('.popup-thank-bg')) {
             closePopupThank();
         } else if (target.closest('.preview-block__item')) {
             changeDesignSlider(target.closest('.preview-block__item'));
