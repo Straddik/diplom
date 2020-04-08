@@ -1,3 +1,4 @@
+import { closePopupConsult } from "./review";
 const checkbox = document.querySelectorAll('.checkbox__label');
 const popupThank = document.querySelector('.popup-thank');
 const reg = new RegExp('^\\+7\\s\\(\\d\\d\\d\\)\\d\\d\\d-\\d\\d-\\d\\d');
@@ -63,8 +64,9 @@ export const activateRecall = (elem) => {
                             [...elem.closest('form').elements].forEach(item => {
                                 item.value = '';
                             });
+                            elem.nextElementSibling.firstElementChild.removeAttribute('checked');
+                            closePopupConsult();
                             popupThank.style.visibility = 'visible';
-                            elem.nextElementSibling.firstElementChild.setAttribute('checked', `${!Boolean(elem.nextElementSibling.firstElementChild.getAttribute('checked'))}`);
                         }, )
                         .catch((error) => {
                             console.error(error);

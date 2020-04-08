@@ -131,7 +131,7 @@ const clickEventListener = () => {
             changeCheckbox(target.closest('.checkbox__label'));
         } else if (target.closest('button') && (target.closest('.feedback__form') || target.closest('.feedback-block__form'))) {
             activateRecall(target);
-        } else if (target.closest('.popup-consultation') && target.closest('.close')) {
+        } else if (target.closest('.popup-consultation') && target.closest('.close') || target.closest('.popup-consultation') && !target.closest('.feedback-wrap')) {
             closePopupConsult();
         } else if (target.closest('.popup-thank') && target.closest('.close')) {
             closePopupThank();
