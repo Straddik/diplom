@@ -64,6 +64,7 @@ export const activateRecall = (elem) => {
                                 item.value = '';
                             });
                             popupThank.style.visibility = 'visible';
+                            elem.nextElementSibling.firstElementChild.setAttribute('checked', `${!Boolean(elem.nextElementSibling.firstElementChild.getAttribute('checked'))}`);
                         }, )
                         .catch((error) => {
                             console.error(error);

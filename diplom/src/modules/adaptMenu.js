@@ -39,7 +39,7 @@ const adaptMenu = () => {
             appearanceRightArrow();
         }
         //Проверка изменения матрицы состояния(преобразование из строки в массив)
-        if (window.getComputedStyle(menu).hasAttribute('transform')) {
+        if (window.getComputedStyle(menu).transform !== undefined) {
             if (window.getComputedStyle(menu).transform.split('matrix(')[1].split(', ').map(val => val = +val.split(')')[0])[4] !== 0 ||
                 window.getComputedStyle(menu).transform.split('matrix(')[1].split(', ').map(val => val = +val.split(')')[0])[5] !== 0) {
                 if (window.innerWidth <= 575) {

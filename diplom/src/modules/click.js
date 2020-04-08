@@ -143,7 +143,9 @@ const clickEventListener = () => {
             closePopupMenu();
         } else if (target.classList.contains('popup-repair-types') || target.closest('.close')) {
             closePopupRepair();
-        };
+        } else {
+            closePopupMenu();
+        }
     })
 };
 
