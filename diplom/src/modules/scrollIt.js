@@ -3,14 +3,15 @@ const animateScrolling = (elem, step, count) => {
     let idReq = requestAnimationFrame(animateScrolling.bind(null, elem, step, count)),
         scrollTopVal;
     if (step <= 0) {
-        step = step + (Math.floor(Math.pow(count, 2)) - 750);
+        //Параболическое изменение скорости
+        step = step - (-Math.floor(Math.pow(count * 0.1, 2)) + 2 * count);
         document.body.scrollTop += step;
         document.documentElement.scrollTop += step;
     } else {
         document.body.scrollTop += step;
         document.documentElement.scrollTop += step;
     }
-    console.log(count, document.body.scrollTop)
+    console.log(count, document.body.scrollTop);
     scrollTopVal = document.documentElement.scrollTop === 0 ? document.body.scrollTop : document.documentElement.scrollTop;
     let offsetHeight = (!!document.documentElement && document.documentElement.offsetHeight) || (document.body.offsetHeight);
     if (step < 0) {
