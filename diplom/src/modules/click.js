@@ -127,6 +127,11 @@ const clickEventListener = () => {
             openPopupConsult();
         } else if (target.closest('.popup-repair-types-nav__item')) {
             changeActive(target);
+        } else if (target.hasAttribute('name')) {
+            if (target.getAttribute('name') === 'phone' && !target.closest('.done')) {
+                target.setSelectionRange(4, 4);
+                target.classList.add('done');
+            }
         } else if (target.closest('.checkbox__label')) {
             changeCheckbox(target.closest('.checkbox__label'));
         } else if (target.closest('button') && (target.closest('.feedback__form') || target.closest('.feedback-block__form'))) {

@@ -22,6 +22,12 @@ const applyStyle = () => {
     input {
         border: none;
     }
+    .checkbox.error {
+        border: 2px solid red;
+    }
+    .checkbox {
+        border: none;
+    }
     `
     document.head.appendChild(style);
 };
@@ -29,29 +35,35 @@ const applyStyle = () => {
 export const prepairButtonSend = () => {
     applyStyle();
     checkbox.forEach(item => {
-        item.parentNode.previousElementSibling.disabled = true;
+        item.parentNode.previousElementSibling.classList.add('disabled');
     })
 };
 
 export const changeCheckbox = (elem) => {
     if (!elem.previousElementSibling.getAttribute('checked')) {
         elem.previousElementSibling.setAttribute('checked', `${!Boolean(elem.previousElementSibling.getAttribute('checked'))}`);
-        elem.parentNode.previousElementSibling.disabled = false;
+        if (elem.parentNode.previousElementSibling.classList.contains('disabled')) {
+            elem.parentNode.previousElementSibling.classList.remove('disabled');
+        }
+
     } else {
         elem.previousElementSibling.removeAttribute('checked');
-        elem.parentNode.previousElementSibling.disabled = true;
+        if (!elem.parentNode.previousElementSibling.classList.contains('disabled')) {
+            elem.parentNode.previousElementSibling.classList.add('disabled');
+        }
     };
 };
 export const activateRecall = (elem) => {
-    if (!elem.hasAttribute('disabled')) {
-        const formData = new FormData(elem.closest('form'));
-        let body = {};
-        formData.forEach((val, key) => {
-            body[key] = val;
-        });
+    if (!elem.classList.contains('disabled')) {
+        elem.nextElementSibling.classList.remove('error');
         [...elem.closest('form').elements].forEach(item => {
             if (item.name === "phone") {
                 if (reg.test(item.value)) {
+                    const formData = new FormData(elem.closest('form'));
+                    let body = {};
+                    formData.forEach((val, key) => {
+                        body[key] = val;
+                    });
                     item.classList.remove('error');
                     postData(body, './server.php')
                         .then((response) => {
@@ -63,6 +75,7 @@ export const activateRecall = (elem) => {
                             //Очистка inputов
                             [...elem.closest('form').elements].forEach(item => {
                                 item.value = '';
+                                item.classList.remove('done')
                             });
                             elem.nextElementSibling.firstElementChild.removeAttribute('checked');
                             closePopupConsult();
@@ -76,9 +89,18 @@ export const activateRecall = (elem) => {
                 }
             };
         });
-
-
-    };
+    } else {
+        if (!elem.nextElementSibling.classList.contains('error')) {
+            elem.nextElementSibling.classList.add('error');
+        };
+        [...elem.closest('form').elements].forEach(item => {
+            if (item.name === "phone") {
+                if (!reg.test(item.value)) {
+                    item.classList.add('error');
+                }
+            }
+        });
+    }
 };
 
 export const closePopupThank = () => {
